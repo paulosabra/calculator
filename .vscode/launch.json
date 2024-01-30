@@ -1,0 +1,9 @@
+{
+  "configurations": [
+    {
+      "name": "Launch",
+      "request": "launch",
+      "type": "dart",
+    }
+  ]
+}
