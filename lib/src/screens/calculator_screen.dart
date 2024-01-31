@@ -1,12 +1,22 @@
 import 'package:calculator/src/components/display_panel.dart';
 import 'package:calculator/src/components/keyboard.dart';
+import 'package:calculator/src/models/memory.dart';
 import 'package:flutter/material.dart';
 
-class CalculatorScreen extends StatelessWidget {
+class CalculatorScreen extends StatefulWidget {
   const CalculatorScreen({super.key});
 
-  _onPressed(String? text) {
-    debugPrint(text);
+  @override
+  State<CalculatorScreen> createState() => _CalculatorScreenState();
+}
+
+class _CalculatorScreenState extends State<CalculatorScreen> {
+  final Memory memory = Memory();
+
+  _onPressed(String? command) {
+    setState(() {
+      memory.applyCommand(command ?? '');
+    });
   }
 
   @override
@@ -14,7 +24,7 @@ class CalculatorScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          const CustomDisplayPanel(value: '123.45'),
+          CustomDisplayPanel(value: memory.value),
           CustomKeyboard(
             onPressed: _onPressed,
           ),
